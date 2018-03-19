@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Home Survilance</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:growl id="loginGrowl" showDetail="true" sticky="true" />
+        <p:panel header="Home Survilance" >
+            <h:panelGrid columns="2" cellpadding="4">
+                <h:outputText value="Account: "/>
+                <p:inputText value="#{loginBackEnd.accountName}"/>
+
+                <h:outputText value="Password: "/>
+                <p:password value="#{loginBackEnd.password}"/>
+
+                <p:commandButton value="Submit" update="loginGrowl" actionListener="#{loginBackEnd.welcomeMessage}"
+                                 action="#{loginBackEnd.loginRedirect}"/>
+            </h:panelGrid>
+
+        </p:panel>
+    </h:form>
+
+</h:body>
+
+</html>

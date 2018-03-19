@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Survilance Front Door</title>
+
+</h:head>
+<p:layoutUnit visible="true" position="west" size="auto" style="text-align: center;">
+<h:body>
+    <h:form id="dialogForm" styleClass="modal">
+        <p:dialog id="detailsBookingDlg" header="Visitor In Timeline" widgetVar="detailsVisitorWdgt" positionType="fixed"
+                  width="680px" height="630px" dynamic="true" modal="true" visible="ture"
+                  showEffect="clip" hideEffect="clip" resizable="false" closeOnEscape="true">
+            <h:panelGroup id="detailsBookingInner" layout="block">
+                <h:panelGrid columns="1">
+                    <p:graphicImage value="#{singleLazyImageView.singleVisitorImage}" stream="false"/>
+                    <p:separator/>
+                    <h:outputText value="Write Notes About The Visitor"/>
+
+
+                    <p:inputTextarea value="#{editServerTimelineController.event.data.commentAboutVisitor}"
+                                     autoResize="false" disabled="true"
+                                     rendered="#{not empty editServerTimelineController.event}"/>
+                </h:panelGrid>
+            </h:panelGroup>
+            <f:facet name="footer">
+                <h:panelGroup layout="block" style="text-align:right; padding:2px; white-space:nowrap;">
+                    <p:commandButton value="Save" process="detailsBookingDlg" update="@none"
+                                     action="#{editServerTimelineController.saveDetails}"
+                                     oncomplete="if(!args.validationFailed){PF('detailsVisitorWdgt').hide();}"/>
+                    <p:commandButton type="button" value="Close" onclick="PF('detailsVisitorWdgt').hide()"/>
+                </h:panelGroup>
+            </f:facet>
+        </p:dialog>
+        <p:dialog id="deleteVisitorDlg" header="Visitor Details" widgetVar="deleteVisitorWdgt"
+                  showEffect="clip" hideEffect="clip" dynamic="true">
+            <h:panelGroup id="deleteBookingInner" layout="block" style="margin:10px;">
+                <h:outputText value="#{editServerTimelineController.deleteMessage}"/>
+            </h:panelGroup>
+
+            <f:facet name="footer">
+                <h:panelGroup layout="block" style="text-align:right; padding:2px; white-space:nowrap;">
+                    <p:commandButton value="Delete" process="deleteVisitorDlg" update="@none"
+                                     action="#{editServerTimelineController.delete}"
+                                     oncomplete="PF('deleteVisitorWdgt').hide()"/>
+                    <p:commandButton type="button" value="Close" onclick="PF('deleteVisitorWdgt').hide()"/>
+                </h:panelGroup>
+            </f:facet>
+        </p:dialog>
+    </h:form>
+</h:body>
+</p:layoutUnit>
+</html>

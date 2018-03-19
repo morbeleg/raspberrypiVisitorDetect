@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="knockApi.entity.ImageContainer" table="visitors" catalog="homeSecurity">
+        <id name="id" type="java.lang.Integer">
+            <column name="entityId"/>
+            <generator class="identity"/>
+        </id>
+        <property name="createdDate" type="java.util.Date">
+            <column name="visitorDate" length="10" not-null="true" unique="false"/>
+        </property>
+        <property name="singleInternalImageName" type="java.lang.String">
+            <column name="internalImageName" not-null="true" unique="false"/>
+        </property>
+        <property name="imageContent" type="java.sql.Blob">
+            <column name="fileContent" not-null="true" unique="false"/>
+        </property>
+        <property name="dailyDynamicRelativePath" type="java.lang.String">
+            <column name="dailyDynamicRelativePath" not-null="true"/>
+        </property>
+        <property name="imagePathName" type="java.lang.String">
+            <column name="imagePathName" not-null="true"/>
+        </property>
+        <property name="commentAboutVisitor" type="java.lang.String">
+            <column name="commentAboutVisitor" not-null="false"/>
+        </property>
+
+    </class>
+</hibernate-mapping>
